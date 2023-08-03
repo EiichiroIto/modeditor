@@ -1,5 +1,16 @@
 # modeditor
-Tiny text editor module for MicroPython.
+A very small text editor written in C that does not use much memory.
+This is a built-in MicroPython module.
+
+## Specifications
+- Up to 64KiB
+- No horizontal scrolling
+- No Japanese (ASCII characters only)
+- Up/down, left/right cursor movement
+- Page movement
+- BS, DEL delete
+- SPIFFS support
+- LF for line endings
 
 ## Installation
 

@@ -242,8 +242,6 @@ editor_main()
       show_status();
     } else if (ch >= ' ' && ch < 0x80) {
       append_normalchar(ch);
-    } else {
-      //printf("[%x]", ch);
     }
   }
 #ifndef __linux__
@@ -266,7 +264,7 @@ read_file(const char *filename)
     file = mp_vfs_open(MP_ARRAY_SIZE(args), &args[0], (mp_map_t *)&mp_const_empty_map);
     nlr_pop();
   } else {
-    //printf("new file\n");
+    // new file
     return;
   }
 
@@ -280,7 +278,7 @@ read_file(const char *filename)
 	}
 	if (len) {
 	  if (!import_data((const uint8_t *) buf, len)) {
-		show_message("*** Insufficient memory! ***");
+		show_message("*** Insufficient buffer size! ***");
 		break;
 	  }
 	}
@@ -302,17 +300,12 @@ write_file(const char *filename, const uint8_t *buf, uint16_t size)
   mp_obj_t file;
   file = mp_vfs_open(MP_ARRAY_SIZE(args), &args[0], (mp_map_t *)&mp_const_empty_map);
 
-  //printf("mp_vfs_open done\n");
-
   int errcode;
-  //uint16_t len = mp_stream_rw(file, (byte *) buf, size, &errcode, MP_STREAM_RW_WRITE | MP_STREAM_RW_ONCE);
   mp_stream_rw(file, (byte *) buf, size, &errcode, MP_STREAM_RW_WRITE | MP_STREAM_RW_ONCE);
   if (errcode != 0) {
     mp_raise_OSError(errcode);
   }
 
-  //printf("write done=%d\n", len);
-  
   mp_stream_close(file);
 }
 
