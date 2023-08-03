@@ -23,3 +23,16 @@ $ cd micropython/ports/rp2/
 $ make USER_C_MODULES=../../../micropython.cmake
 $ cp build-PICO/firmware.uf2 $(WHERE_PICO_MOUNTED)
 ```
+
+## Usage
+```
+>>> import editor
+>>> editor.edit("main.py")
+```
+
+### Save the file and Exit
+Ctrl-X Ctrl-S
+
+### Exit without saving
+Ctrl-X Ctrl-C
+
